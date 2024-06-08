@@ -1,0 +1,451 @@
+﻿@model AdminViewModel
+ 
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+    MechatroContext context = new MechatroContext();
+    Category category1 = new Category();
+    Status status1 = new Status();
+    Product product1 = new Product();
+    Supplier supplier1 = new Supplier();
+
+
+    string CategoryName = "";
+    string BrandName = "";
+    string StatusName = "";
+
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- Kategori Tablosu-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption" onclick="togglePortlet(this)">
+
+                    <i class="fa fa-cogs"></i>
+                    <a href="Admin/CategoryIndex" style="color:white;">
+                        KATEGORİ TABLOSU
+                    </a>
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="expand">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="" class="fullscreen">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="display: none;">
+                <div class="table-scrollable">
+                    <table class="table table-striped table-hover">
+                        <thead>
+
+
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => category1.CategoryID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => category1.CategoryName)
+                                </th>
+                                <th>
+                                    
+                                </th>
+                                <th>@Html.DisplayNameFor(model => category1.IsActive)</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            @foreach (var category in Model.Categories.Where(c => c.ParentID == 0))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => category.CategoryID)
+                                    </td>
+
+                                    <td>
+                                        <span style="background-color:grey;color:white;font-weight:bold;">@Html.DisplayFor(model => category.CategoryName) </span>
+                                    </td>
+
+
+                                    <td>
+                                        <span style="border-width:100px">@Html.DisplayFor(model => category.IsActive)</span>
+
+                                    </td>
+
+                                    @if (category.IsActive)
+                                    {
+                                        <td>
+
+                                            <label style="background-color:green;color:white;">AKTİF</label>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <label style="background-color:red;color:white;">PASİF</label>
+                                        </td>
+                                    }
+
+                                    <td>
+                                        <a asp-action="CategoryEdit" asp-route-id="@category.CategoryID" class="btn btn-primary">DÜZELT</a>
+                                        <a asp-action="CategoryDetails" asp-route-id="@category.CategoryID" class="btn btn-info">DETAY</a>
+                                        <a asp-action="CategoryDelete" asp-route-id="@category.CategoryID" class="btn btn-danger">SİL</a>
+                                    </td>
+                                </tr>
+
+                                // Alt Kategori
+                                @foreach (var subitem in Model.Categories)
+                                {
+                                    if (category.CategoryID == subitem.ParentID)
+                                    {
+                                        //Buraya girerse, ana kategorilerin alt kategorileri listelenir
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(model => subitem.CategoryID)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(model => subitem.CategoryName)
+                                            </td>
+                                            <td>
+                                              
+                                            </td>
+
+                                            @if (subitem.IsActive)
+                                            {
+                                                <td>
+                                                    <label style="background-color:green;color:white;">AKTİF</label>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    <label style="background-color:red;color:white;">PASİF</label>
+                                                </td>
+                                            }
+
+                                            <td>
+                                                <a asp-action="CategoryEdit" asp-route-id="@subitem.CategoryID" class="btn btn-primary">DÜZELT</a>
+                                                <a asp-action="CategoryDetails" asp-route-id="@subitem.CategoryID" class="btn btn-info">DETAY</a>
+                                                <a asp-action="CategoryDelete" asp-route-id="@subitem.CategoryID" class="btn btn-danger">SİL</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        <!-- Kategori Tablosu Sonu-->
+    </div>
+    <div class="col-md-6">
+        <!-- Marka Tablosu -->
+        <div class="portlet box purple">
+            <div class="portlet-title">
+                <div class="caption" onclick="togglePortlet(this)">
+                    <i class="fa fa-coffee"></i>
+                    <a href="Admin/SupplierIndex" style="color:white;">MARKA TABLOSU </a>
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="expand">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="" class="fullscreen">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="display: none;">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                       
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => supplier1.SupplierID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => supplier1.BrandName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => supplier1.PhotoPath)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => supplier1.IsActive)
+                                </th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                        
+                    </thead>
+                    <tbody>
+
+                        @foreach (var supplier in Model.Suppliers)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => supplier.SupplierID)
+                                </td>
+
+                                <td>
+                                    <span style="background-color:grey;color:white;font-weight:bold;">@Html.DisplayFor(model => supplier.BrandName) </span>
+                                </td>
+
+                                <td>
+                                    <img src="~/img/@supplier.PhotoPath" height="35" width="60" />
+                                </td>
+
+
+                                @if (supplier.IsActive)
+                                {
+                                    <td>
+                                        <label style="background-color:green;color:white;">AKTİF</label>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <label style="background-color:red;color:white;">PASİF</label>
+                                    </td>
+                                }
+
+                                <td>
+                                    <a asp-action="SupplierEdit" asp-route-id="@supplier.SupplierID" class="btn btn-primary">DÜZELT</a>
+                                    <a asp-action="SupplierDetails" asp-route-id="@supplier.SupplierID" class="btn btn-info">DETAY</a>
+                                    <a asp-action="SupplierDelete" asp-route-id="@supplier.SupplierID" class="btn btn-danger">SİL</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Marka Tablosu Sonu -->
+    </div>
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- Ürün Tablosu -->
+        <div class="portlet box red">
+            <div class="portlet-title">
+                <div class="caption" onclick="togglePortlet(this)">
+                    <i class="fa fa-cogs"></i>
+                    <a href="Admin/ProductIndex" style="color:white;">ÜRÜN TABLOSU </a>
+
+
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="expand">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="display: none;">
+                <div class="table-scrollable">
+                    <table class="table table-hover table-dark">
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => product1.ProductID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => product1.ProductName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => product1.UnitPrice)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => product1.Stock)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => product1.Discount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => product1.PhotoPath)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => product1.IsActive)
+                                </th>
+
+
+
+
+                                <th></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.Products)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => item.ProductID)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(model => item.ProductName)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(model => item.UnitPrice)
+                                    </td>
+
+
+
+                                    <td>
+                                        @Html.DisplayFor(model => item.Stock)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(model => item.Discount)
+                                    </td>
+
+                                    <td>
+                                        <img src="~/img/@item.PhotoPath" height="35" width="60" />
+                                    </td>
+
+                                    @if (item.IsActive)
+                                    {
+                                        <td>
+                                            <label style="background-color:green;color:white;">AKTİF</label>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <label style="background-color:red;color:white;">PASİF</label>
+                                        </td>
+                                    }
+
+                                    <td>
+                                        <a asp-action="ProductEdit" asp-route-id="@item.ProductID" class="btn btn-primary">DÜZELT</a>
+                                        <a asp-action="ProductDetails" asp-route-id="@item.ProductID" class="btn btn-info">DETAY</a>
+                                        <a asp-action="ProductDelete" asp-route-id="@item.ProductID" class="btn btn-danger">SİL</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Ürün Tablosu Sonu-->
+    </div>
+    <div class="col-md-6">
+        <!-- Durum Tablosu -->
+        <div class="portlet box yellow">
+            <div class="portlet-title">
+                <div class="caption" onclick="togglePortlet(this)">
+                    <i class="fa fa-coffee"></i>
+                    <a href="Admin/StatusIndex" style="color:white;">DURUM TABLOSU </a>
+
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" id="expandExpandButton" class="expand"></a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="" class="fullscreen">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="display: none;">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => status1.StatusID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => status1.StatusName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => status1.IsActive)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model.Statuses)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => item.StatusID)
+                                </td>
+
+                                <td>
+                                    <span style="background-color:grey;color:white;font-weight:bold;">@Html.DisplayFor(model => item.StatusName) </span>
+                                </td>
+
+
+
+
+                                @if (item.IsActive)
+                                {
+                                    <td>
+                                        <label style="background-color:green;color:white;">AKTİF</label>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <label style="background-color:red;color:white;">PASİF</label>
+                                    </td>
+                                }
+
+                                <td>
+                                    <a asp-action="StatusEdit" asp-route-id="@item.StatusID" class="btn btn-primary">DÜZELT</a>
+                                    <a asp-action="StatusDelete" asp-route-id="@item.StatusID" class="btn btn-danger">SİL</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Durum Tablosu Sonu -->
+    </div>
+</div>
+<script>
+    function togglePortlet(element) {
+        var portletContent = element.nextElementSibling;
+        portletContent.style.display = (portletContent.style.display === "none") ? "block" : "none";
+    }
+</script>
