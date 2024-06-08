@@ -1,8 +1,8 @@
-﻿using mechatro_project.Models;
+﻿using mechatro_ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using XAct;
 
-namespace mechatro_project.ViewComponents
+namespace mechatro_ecommerce.ViewComponents
 {
     public class Address:ViewComponent
     {

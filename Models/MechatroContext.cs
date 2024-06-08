@@ -23,6 +23,9 @@ namespace mechatro_ecommerce.Models
         public DbSet<Message> Messages { get; set; }        
         public DbSet<Setting> Settings { get; set; }
         public DbSet<vw_MyOrders> vw_MyOrders { get; set; }
+        public DbSet<SP_Search> sp_Searches { get; set; }
+
+
 
 
 

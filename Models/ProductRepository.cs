@@ -104,11 +104,6 @@ namespace mechatro_ecommerce.Models
             return products;
         }
 
-
-
-
-
-
         public  bool ProductInsert(Product product)
         {
             try
@@ -207,6 +202,17 @@ namespace mechatro_ecommerce.Models
             return products;
         }
 
-       
+        public static List<SP_Search> gettingSearchProducts(string id)
+        {
+            using MechatroContext context = new MechatroContext();
+            {
+                var products = context.sp_Searches.FromSql($"sp_arama {id}").ToList();
+                return products;
+            }
+
+
+        }
+
+
     }
 }
