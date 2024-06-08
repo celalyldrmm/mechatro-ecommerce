@@ -1,8 +1,324 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model MainPageModel
+@{
+    ViewData["Ti₺e"] = "Index";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- SLIDER SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- shop -->
+            @{
+                var sliderProducts = Model.SliderProducts;
+
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        @for (int i = 0; i < sliderProducts.Count; i++)
+                        {
+                            <li data-target="#myCarousel" style="background-color:black" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                        }
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        @foreach (var item in sliderProducts)
+                        {
+                            <div class="item @(item == sliderProducts[0] ? "active" : "")">
+                                <div class="slider-image-container">
+                                    <img src="~/img/@item.PhotoPath" alt="Slider Image" class="slider-image">
+                                </div>
+                                <div class="carousel-caption">
+                                    <div class="caption-inner">
+                                        <h2>@item.ProductName</h2>
+                                        <p><span class="price">@item.UnitPrice ₺</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            }
+            <!-- /shop -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
 </div>
+<!-- SLIDER SECTION -->
+<!-- NEW PRODUCTS SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">YENİ ÜRÜNLER</h3>
+
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab1" class="tab-pane active">
+                            <div class="products-slick" data-nav="#slick-nav-1">
+                                <!-- product -->
+                                @foreach (var item in Model.NewProducts)
+                                {
+                                    <div class="product">
+                                        <a href="/Home/Details/@item.ProductID"> </a>
+                                        <div class="product-img">
+                                            <img class="my-size" src="~/img/@item.PhotoPath" alt="">
+                                            <div class="product-label">
+
+                                                <span class="new">YENİ</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h3>
+                                            <h4 class="product-price">@item.UnitPrice ₺ </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <a href="/Home/Details/@item.ProductID" ti₺e="Detayları Göster"> <i class="fa fa-eye"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="/Home/CartProcess/@item.ProductID">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- /product -->
+
+                            </div>
+                            <div id="slick-nav-1" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- NEW PRODUCTS SECTION -->
+<!-- HOT DEAL TIMER SECTION -->
+<div id="hot-deal" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hot-deal">
+                    <ul class="hot-deal-countdown">
+                        <li>
+                            <div>
+                                <h3 id="days">02</h3>
+                                <span>Gün</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3 id="hours">10</h3>
+                                <span>Saat</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3 id="minutes">34</h3>
+                                <span>Dakika</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3 id="seconds">60</h3>
+                                <span>Saniye</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <h2 class="text-uppercase">BU HAFTANIN İNDİRİMLİ ÜRÜNLERİ</h2>
+                    <a class="primary-btn cta-btn" href="/Home/FeaturedProducts">ŞİMDİ SATIN AL</a>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /HOT DEAL TIMER SECTION -->
+<!-- TOPSELLER PRODUCTS SECTION -->
+<div class="section" style="display:flex;margin-bottom:10px">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">ÇOK SATANLAR</h3>
+
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab2" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-2">
+                                <!-- product -->
+                                @foreach (var item in Model.TopsellerProducts)
+                                {
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img class="my-size" src="~/img/@item.PhotoPath" alt="">
+                                            <div class="product-label">
+                                                <span class="new">ÇOK SATAN</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+
+                                            <h3 class="product-name"><a href=/Home/Details/@item.ProductID>@item.ProductName</a></h3>
+                                            <h4 class="product-price">@item.UnitPrice ₺ </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <a href="/Home/Details/@item.ProductID" title="Detayları Göster"> <i class="fa fa-eye"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="/Home/CartProcess/@item.ProductID">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- /product -->
+
+
+                            </div>
+                            <div id="slick-nav-2" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- TOPSELLER PRODUCTS SECTION -->
+<hr />
+
+<!-- FEATURED PRODUCTS SECTION -->
+<div class="section" style="display:flex">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">FIRSAT ÜRÜNLERİ</h3>
+
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab2" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-3">
+                                <!-- product -->
+                                @foreach (var item in Model.FeaturedProducts)
+                                {
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img class="my-size" src="~/img/@item.PhotoPath" alt="">
+                                            <div class="product-label">
+                                                <span class="sale">İNDİRİM</span>
+                                                <span class="new">%@item.Discount</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+
+                                            <h3 class="product-name"><a href=/Home/Details/@item.ProductID>@item.ProductName</a></h3>
+                                            <h4 class="product-price">@item.UnitPrice ₺ </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <a href="/Home/Details/@item.ProductID" title="Detayları Göster"> <i class="fa fa-eye"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="/Home/CartProcess/@item.ProductID">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- /product -->
+
+
+                            </div>
+                            <div id="slick-nav-3" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- FEATURED PRODUCTS SECTION -->

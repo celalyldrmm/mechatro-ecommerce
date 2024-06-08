@@ -1,0 +1,248 @@
+﻿@model IEnumerable<Category>
+@inject IHttpContextAccessor Accessor
+
+<!-- HEADER -->
+<header>
+
+    <!-- MAIN HEADER -->
+    <div id="header">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                
+
+                    <!-- LOGO -->
+                    <div class="col-md-3" style="margin-top:8px">
+                        <div class="header-logo">
+                            <a href="/Home/Index" class="logo">
+                                <p style="font-size: 60px; font-family: Brush Script MT, cursive; font: italic; text-shadow: 3px 3px #D10024; color: white">
+                                    <i>
+                                        Mechatro.
+                                    </i>
+
+                                </p> 
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /LOGO -->
+                    <!-- SEARCH BAR -->
+
+
+
+                    <div class=" flex flex-col justify-center">
+                        <div class="relative p-12 w-full" style=" max-width:50rem">
+
+                            <div class="overflow-hidden z-0 rounded-full relative p-3">
+                                <div class="relative flex z-50 bg-white rounded-full">
+                                    <input type="text" lang="tr" id="search" name="search" placeholder="Ürün Ara" class="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none">
+                                    <div class="search_input">
+                                        <br />
+                                        <br />
+
+                                    </div>
+                                </div>
+                                <div class="glow glow-1 z-10  absolute" style="background-color: rgb(209 0 36)"></div>
+                                <div class="glow glow-2 z-20  absolute" style="background-color:darkblue"></div>
+                                <div class="glow glow-3 z-30  absolute" style="background-color:grey"></div>
+                                <div class="glow glow-4 z-40  absolute" style="background-color: rgb(209 0 36)"></div>
+                            </div>
+                            <div id="dv" style="width: 200px; background-color: white; position: absolute; z-index: 99999; margin-left: 20px; color: #D10024;">
+                                <ul id="sul" style="color:#D10024"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- /SEARCH BAR -->
+                    <!-- ACCOUNT -->
+                    <div class="col-md-4 clearfix">
+                        <div class="header-ctn">
+
+                            <!-- Cart -->
+                            @{
+                                var username = Accessor.HttpContext.Session.GetString("Email");
+                            }
+                            <div style="display: @(string.IsNullOrEmpty(username) ? "block" : "none");position:absolute;margin-left:450px;margin-top:-95px;">
+                                <a href="/Home/Cart">
+                                    <i class="fa fa-shopping-basket" aria-hidden="true" style="font-size: 2em"></i>
+                                    <span>Sepetim</span>
+                                </a>
+                            </div>
+
+                            <!-- /Cart -->
+                            <!--Giriş Yap Butonu-->
+                            <div style="background-color: white; position: absolute; margin-left: 1150px; margin-top: -150px; ">
+                                <button>
+                                    <a href="/Admin/Login">Admin</a>
+                                </button>
+                            </div>
+                            <div class="acılsusam" style=" position: absolute; margin-left: 400px; margin-top: -93px;">
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" style="background-color:white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user  fa-2x"></i>
+
+
+                                        <span style="color:black;font-size:15px">@username</span>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+
+
+
+                                        @if (username == null)
+                                        {<ul>
+                                                <li>
+                                                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                                    <a class="dropdown-item" href="@Url.Action("Login","Home")">Giriş Yap</a>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                                    <a class="dropdown-item" href="@Url.Action("Register","Home")">Üye Ol</a>
+                                                </li>
+                                            </ul>
+
+                                        }
+                                        else
+                                        {
+
+                                    <ul style="text-align:center">
+
+                                        <li>
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <a class="dropdown-item" href="/Home/Cart">Sepetim</a>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-archive" aria-hidden="true"></i>
+                                            <a class="dropdown-item" href="/Home/MyOrders">Siparişlerim</a>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                            <a class="dropdown-item" href="/Home/Logout">Çıkış Yap</a>
+                                        </li>
+                                    </ul>
+
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                    <!-- /ACCOUNT -->
+                </div>
+                <!-- row -->
+            </div>
+        <!-- container -->
+    </div>
+    <!-- /MAIN HEADER -->
+    </div>
+</header>
+<!-- /HEADER -->
+<!-- NAVIGATION -->
+
+<nav id="navigation">
+    <div class="container">
+        <div id="responsive-nav">
+            <ul class="main-nav nav navbar-nav">
+                <li class="dropdown mega-menu">
+                    
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
+                    <ul class="dropdown-menu mega-menu-content">
+                        <div class="row">
+                            <br />
+                            @foreach (var item in Model.Where(c => c.ParentID == 0))
+                            {
+
+                                <div class="col-md-4">
+                                                                    
+                                   <p>
+                                       <b style=" text-decoration: overline underline;" >@item.CategoryName</b>
+                                   </p>
+                                                                          
+                                    
+                                    <ul class="list-unstyled">
+                                        @foreach (var subitem in Model.Where(c => c.ParentID == item.CategoryID))
+                                        {
+
+
+                                            <li>
+                                                <a title="@subitem.CategoryName" href="/Home/CategoryPage/@subitem.CategoryID">
+                                                    @subitem.CategoryName
+                                                </a>
+                                            </li>
+                                        }
+
+
+
+                                    </ul>
+
+                                </div>
+                            }
+                        </div>
+                    </ul>
+                </li>
+                <li><a href="/Home/NewProducts">Yeni Ürünler</a></li>
+                <li><a href="/Home/FeaturedProducts">Fırsat Ürünleri</a></li>
+                <li><a href="/Home/TopsellerProducts">Çok Satanlar</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- /NAVIGATION -->
+
+<script>
+    $(document).ready(function () {
+        $(".acılsusam").hover(
+            function () {
+                if ($(this).hasClass('open')) return;
+                $(".dropdown-menu", this).stop(true, true).slideDown("fast");
+                $(this).addClass('open');
+            },
+            function () {
+                $(".dropdown-menu", this).stop(true, true).slideUp("fast");
+                $(this).removeClass('open');
+            }
+        );
+
+        // Dropdown içindeki linklere tıklandığında dropdown kapanacak
+        $(".dropdown-item").click(function () {
+            $(".dropdown-menu").slideUp("fast");
+            $(".acılsusam").removeClass('open');
+        });
+    });
+
+
+</script>
+<script>
+    $("#search").keyup(function () {
+        //alert("Geldim")
+        var id = $("#search").val();
+        if (id != "" && $("#search").val().length > 1) {
+            //alert("Geldim")
+            $.ajax({
+                url: '/Home/gettingProducts/' + id,
+                type: 'POST',
+                ContentType: "application/json;charset=UTF-8",
+                success: function (result) {
+                    $("#sul").remove();
+                    $("#dv").append("<ul id='sul'>")
+                    $("#sul").append(result);
+                    $("#dv").append("</ul")
+                }
+            })
+
+        }
+        else {
+            $("sul").remove();
+        }
+    })
+
+
+</script>
