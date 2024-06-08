@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using mechatro_ecommerce.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace mechatro_ecommerce.Models
 {
@@ -21,10 +22,12 @@ namespace mechatro_ecommerce.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Message> Messages { get; set; }        
         public DbSet<Setting> Settings { get; set; }
-        
-        
-        
-       
+        public DbSet<vw_MyOrders> vw_MyOrders { get; set; }
+
+
+
+
+
 
 
 
