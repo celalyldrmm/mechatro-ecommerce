@@ -1,0 +1,63 @@
+﻿.preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Preloader arkaplan rengi */
+    z-index: 9999; /* En üstte görünecek */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease; /* Geçiş efekti */
+    opacity: 1; /* Varsayılan olarak görünür */
+}
+
+.gear {
+    border-top: 16px solid #f3f3f3; /* Dişli rengi */
+    border-right: 16px solid #D10024; /* Dişli rengi */
+    border-bottom: 16px solid transparent;
+    border-left: 16px solid transparent;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+    .gear:nth-child(2) {
+        transform: rotate(45deg);
+    }
+
+    .gear:nth-child(3) {
+        transform: rotate(90deg);
+    }
+
+    .gear:nth-child(4) {
+        transform: rotate(135deg);
+    }
+
+    .gear:nth-child(5) {
+        transform: rotate(180deg);
+    }
+
+    .gear:nth-child(6) {
+        transform: rotate(225deg);
+    }
+
+    .gear:nth-child(7) {
+        transform: rotate(270deg);
+    }
+
+    .gear:nth-child(8) {
+        transform: rotate(315deg);
+    }
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
