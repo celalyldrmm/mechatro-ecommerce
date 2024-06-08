@@ -1,0 +1,70 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "CategoryPage";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<div class="section" style="display:flex">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab2" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-3">
+                                <!-- product -->
+                                @foreach (var item in Model)
+                                {
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img class="my-size" src="~/img/@item.PhotoPath" alt="">
+                                            <div class="product-label">
+                                             
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+
+                                            <h3 class="product-name"><a href=/Home/Details/@item.ProductID>@item.ProductName</a></h3>
+                                            <h4 class="product-price">@item.UnitPrice ₺ </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <a href="/Home/Details/@item.ProductID" title="Detayları Göster"> <i class="fa fa-eye"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="/Home/CartProcess/@item.ProductID">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- /product -->
+
+
+                            </div>
+                            <div id="slick-nav-3" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>

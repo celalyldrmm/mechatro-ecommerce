@@ -1,0 +1,114 @@
+﻿@model MainPageModel
+@{
+    ViewData["Title"] = "ConfirmPage";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- wishlist area start  -->
+<div class="wishlist-wrapper">
+    <div class="container">
+        <div class="row">
+            <div style="margin-right: 500px; margin-left: 500px; padding-left: 15px; padding: 15px; ">
+
+
+                <div class="row">
+
+                    <div class="cart_totals">
+                        <div class="total_table" style="border-color:black;border:solid;">
+                            <table class="table-responsive">
+                                <tbody>
+
+                                    <tr class="cart-subtotal">
+                                        <th>Sipariş Numarası</th>
+                                        <td><span class="amount">@ViewBag.OrderGroupGUID</span></td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center mt-4" style="padding-top:50px">
+                            <a href="/Home/MyOrders">
+                            <button class="btn btn-primary">SİPARİŞLERİM</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    
+</div>
+
+<div id="product-tab">
+    <!-- product tab nav -->
+    <ul class="tab-nav">
+
+        <li style="font-size:20px;"><a data-toggle="tab">ÇOK SATANLAR</a></li>
+
+    </ul>
+    <!-- /product tab nav -->
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-9 col-lg-12">
+            <div class="row">
+                <div class="products-tabs">
+                    <!-- tab -->
+                    <!-- tab -->
+                    <div id="tab1" class="tab-pane active">
+                        <div class="products-slick" id="products" data-nav="#slick-nav-1">
+                            <!-- product -->
+                            @foreach (var item in Model.RealetedProducts)
+                            {
+                                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                                    <div class="product" style="margin-bottom:15px">
+                                        <a href="/Home/Details/@item.ProductID"> </a>
+                                        <div class="product-img">
+                                            <img class="my-size" src="~/img/@item.PhotoPath" alt="">
+                                            <div class="product-label">
+
+                                                <span class="new">ÇOK SATANLAR</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h3>
+                                            <h4 class="product-price">@item.UnitPrice ₺ </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <a href="/Home/Details/@item.ProductID" title="Detayları Göster"> <i class="fa fa-eye"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="/Home/CartProcess/@item.ProductID">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- /product -->
+                        </div>
+                        <div id="slick-nav-1" style="display:none" class="products-slick-nav"></div>
+                    </div>
+                    <!-- /tab -->
+                    <!-- /tab -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

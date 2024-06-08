@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Search>
+
+@{
+    int ikat = 0;
+    int imar = 0;
+    int iurun = 0;
+}
+
+<ul>
+    @foreach (var item in Model)
+    {
+
+        if (item.URUN != 0)
+        {
+            if (iurun == 0)
+            {
+                <li><b>ÜRÜNLER</b></li>
+                iurun++;
+            }
+            <li>
+                <a href="/Home/Details/@item.URUN" class="baby">
+                    <span class="catTitle">@item.ARAMAISMI</span>
+                </a>
+            </li>
+        }
+
+    }
+</ul>
+
