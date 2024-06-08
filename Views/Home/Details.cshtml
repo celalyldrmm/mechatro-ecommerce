@@ -1,0 +1,179 @@
+﻿@model MainPageModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-5 col-md-push-2">
+                <div id="product-main-img">
+                   
+                        <div class="product-preview">
+                            <img src="~/img/@Model.ProductDetails.PhotoPath" alt="">
+                        </div>
+                                     
+                </div>
+            </div>
+            <!-- /Product main img -->
+            <!-- Product thumb imgs -->
+            <div class="col-md-2  col-md-pull-5">
+                <div id="product-imgs">
+                   
+                        <div class="product-preview">
+                            <img src="~/img/@Model.ProductDetails.PhotoPath" alt="">
+                        </div>
+                    
+                </div>
+            </div>
+            <!-- /Product thumb imgs -->
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="product-details">
+                    <h2 class="product-name">@Model.ProductDetails.ProductName</h2>
+                    <div>
+                        <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                       
+                    </div>
+                    <br />
+                    <div>
+                        <h3 class="product-price">
+                            @Model.ProductDetails.UnitPrice ₺
+
+                                            </h3>
+                        <br />
+                        <span class="product-available" style="margin-left:0px">STOK: @Model.ProductDetails.Stock</span>
+                    </div>
+                    <br />
+                    <p>@Model.ProductDetails.Notes</p>
+
+
+                    <br />
+                    <div class="add-to-cart">
+                        <a href="/Home/CartProcess/@Model.ProductDetails.ProductID">
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                        </a>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <!-- /Product details -->
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                       
+                        <li><a data-toggle="tab" >Details</a></li>
+                      
+                    </ul>
+                    <!-- /product tab nav -->
+                    <!-- product tab content -->
+                    <div class="tab-content">
+                       
+                        <!-- tab2  -->
+                        <div id="tab2" >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>@Model.ProductDetails.Notes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tab2  -->
+                       
+                    </div>
+                    <!-- /product tab content  -->
+                </div>
+            </div>
+            <!-- /product tab -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- Section -->
+<div class="section"style="display:flex">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title" style="text-align:center">
+                    <h3 class="title">BUNA BAKANLAR</h3>
+
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row ">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab2" class="tab-pane fade in active">
+                            <div class="products-slick" data-nav="#slick-nav-2">
+                                <!-- product -->
+                                @foreach (var item in Model.RealetedProducts)
+                                {
+                                    <div class="product " >
+                                        <div class="product-img">
+                                            <img class="my-size" src="~/img/@item.PhotoPath" alt="">
+                                            <div class="product-label">
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+
+                                            <h3 class="product-name"><a href=/Home/Details/@item.ProductID>@item.ProductName</a></h3>
+                                            <h4 class="product-price">@item.UnitPrice ₺ </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <a href="/Home/Details/@item.ProductID" title="Detayları Göster"> <i class="fa fa-eye"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="/Home/CartProcess/@item.ProductID">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- /product -->
+
+
+                            </div>
+                            <div id="slick-nav-2" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /Section -->

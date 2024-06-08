@@ -12,7 +12,7 @@
         <div class="row">
             <!-- shop -->
             @{
-                var sliderProducts = Model.SliderProducts;
+                var sliderProducts = Model.SliderProducts; 
 
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
@@ -59,6 +59,7 @@
     <!-- /container -->
 </div>
 <!-- SLIDER SECTION -->
+
 <!-- NEW PRODUCTS SECTION -->
 <div class="section">
     <!-- container -->
@@ -104,12 +105,11 @@
                                                 <i class="fa fa-star"></i>
                                             </div>
                                             <div class="product-btns">
-                                                <a href="/Home/Details/@item.ProductID" ti₺e="Detayları Göster"> <i class="fa fa-eye"></i> </a>
+                                                <a href="/Home/Details/@item.ProductID"  ti₺e="Detayları Göster"> <i class="fa fa-eye"></i> </a>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <a href="/Home/CartProcess/@item.ProductID">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                                            <a href="/Home/CartProcess/@item.ProductID" > <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
                                             </a>
                                         </div>
                                     </div>
@@ -131,6 +131,8 @@
     <!-- /container -->
 </div>
 <!-- NEW PRODUCTS SECTION -->
+
+
 <!-- HOT DEAL TIMER SECTION -->
 <div id="hot-deal" class="section">
     <!-- container -->
@@ -175,6 +177,7 @@
     <!-- /container -->
 </div>
 <!-- /HOT DEAL TIMER SECTION -->
+
 <!-- TOPSELLER PRODUCTS SECTION -->
 <div class="section" style="display:flex;margin-bottom:10px">
     <!-- container -->
@@ -322,3 +325,4 @@
     <!-- /container -->
 </div>
 <!-- FEATURED PRODUCTS SECTION -->
+

@@ -1,0 +1,39 @@
+﻿@model MainPageModel
+
+<div class="container">
+    <div class="row" style="padding-top:50px;padding-bottom:10px">
+        @foreach (var item in Model.TopsellerProducts)
+        {
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="product">
+                    <a href="/Home/Details/@item.ProductID"></a>
+                    <div class="product-img">
+                        <img class="my-size" src="~/img/@item.PhotoPath" alt="">
+                        <div class="product-label">
+                            <span class="new">ÇOK SATAN</span>
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-name"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h3>
+                        <h4 class="product-price">@item.UnitPrice ₺</h4>
+                        <div class="product-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-btns">
+                            <a href="/Home/Details/@item.ProductID" title="Detayları Göster"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+                    <div class="add-to-cart">
+                        <a href="/Home/CartProcess/@item.ProductID">
+                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

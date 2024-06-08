@@ -1,0 +1,98 @@
+﻿@model MainPageModel
+@{
+    ViewData["Title"] = "FeaturedProducts";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- Single product area start  -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-9 col-lg-12">
+            <div class="row">
+                <div class="products-tabs">
+                    <!-- tab -->
+                    <!-- tab -->
+                    <div id="tab1" class="tab-pane active">
+                        <div class="products-slick" id="products" data-nav="#slick-nav-1">
+                            <!-- product -->
+                            @foreach (var item in Model.FeaturedProducts)
+                            {
+                                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                                    <div class="product" style="margin-bottom:15px">
+                                        <a href="/Home/Details/@item.ProductID"> </a>
+                                        <div class="product-img">
+                                            <img class="my-size" src="~/img/@item.PhotoPath" alt="">
+                                            <div class="product-label">
+                                                <span class="sale">İNDİRİM</span>
+                                                <span class="new">%@item.Discount</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="/Home/Details/@item.ProductID">@item.ProductName</a></h3>
+                                            <h4 class="product-price">@item.UnitPrice ₺ </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <a href="/Home/Details/@item.ProductID" title="Detayları Göster"> <i class="fa fa-eye"></i> </a>
+                                            </div>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <a href="/Home/CartProcess/@item.ProductID">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> SEPETE EKLE</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- /product -->
+
+                        </div>
+                        <div id="slick-nav-1" class="products-slick-nav"></div>
+                    </div>
+
+
+                    <!-- /tab -->
+                    <div class="text-center mt-4" style="padding-top:50px">
+                        <button id="loadmoreProducts" class="btn btn-primary">DAHA FAZLA ÜRÜN GETİR</button>
+                    </div>
+
+                    <input type="hidden" id="pagenumber" value="0" />
+                    <!-- /tab -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+
+    $(document).on("click", "#loadmoreProducts", function () {
+        var pagenumber = parseInt($("#pagenumber").val())
+        var nextpage = pagenumber + 1;
+
+
+        $.ajax({
+            type: "GET",
+            url: "/Home/_PartialFeaturedProducts",
+            data: { pageno: nextpage },
+            async: true,
+            processData: true,
+            cache: true,
+            success: function (result) {
+                $("#products").append(result)
+                $("#pagenumber").val(+nextpage)
+            }
+        })
+
+    })
+</script>
+
