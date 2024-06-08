@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Setting>
+@{
+    ViewData["Title"] = "SettingIndex";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="row">
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p>
+            <a asp-action="SettingCreate" asp-controller="Admin" class="btn btn-success">YENİ AYAR</a>
+        </p>
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+        <div class="portlet box red">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>AYAR TABLOSU
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-scrollable">
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SettingID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Telephone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MainpageCount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SubpageCount)
+                                </th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => item.SettingID)
+                                    </td>
+
+                                    <td>
+                                        <span>@Html.DisplayFor(model => item.Email) </span>
+                                    </td>
+                                    <td>
+                                        <span>@Html.DisplayFor(model => item.Telephone) </span>
+                                    </td>
+                                    <td>
+                                        <span>@Html.DisplayFor(model => item.Address) </span>
+                                    </td>
+                                    <td>
+                                        <span>@Html.DisplayFor(model => item.MainpageCount) </span>
+                                    </td>
+                                    <td>
+                                        <span>@Html.DisplayFor(model => item.SubpageCount) </span>
+                                    </td>
+
+
+                                    <td>
+                                        <a asp-action="SettingEdit" asp-route-id="@item.SettingID" class="btn btn-primary">DÜZELT</a>
+                                        <a asp-action="SettingDelete" asp-route-id="@item.SettingID" class="btn btn-danger">SİL</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
