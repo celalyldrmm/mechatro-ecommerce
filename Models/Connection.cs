@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace MechatroEcommerce.Models
+namespace mechatro_ecommerce.Models
 {
     public class Connection
     {
