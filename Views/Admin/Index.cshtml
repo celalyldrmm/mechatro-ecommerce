@@ -1,5 +1,5 @@
 ﻿@model AdminViewModel
- 
+
 
 @{
     ViewData["Title"] = "Index";
@@ -57,7 +57,7 @@
                                     @Html.DisplayNameFor(model => category1.CategoryName)
                                 </th>
                                 <th>
-                                    
+
                                 </th>
                                 <th>@Html.DisplayNameFor(model => category1.IsActive)</th>
                                 <th></th>
@@ -110,7 +110,6 @@
                                 {
                                     if (category.CategoryID == subitem.ParentID)
                                     {
-                                        //Buraya girerse, ana kategorilerin alt kategorileri listelenir
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(model => subitem.CategoryID)
@@ -120,7 +119,6 @@
                                                 @Html.DisplayFor(model => subitem.CategoryName)
                                             </td>
                                             <td>
-                                              
                                             </td>
 
                                             @if (subitem.IsActive)
@@ -151,8 +149,8 @@
                         </tbody>
                     </table>
                 </div>
-                </div>
             </div>
+        </div>
         <!-- Kategori Tablosu Sonu-->
     </div>
     <div class="col-md-6">
@@ -179,25 +177,25 @@
             <div class="portlet-body" style="display: none;">
                 <table class="table table-bordered table-hover">
                     <thead>
-                       
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => supplier1.SupplierID)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => supplier1.BrandName)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => supplier1.PhotoPath)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => supplier1.IsActive)
-                                </th>
-                                <th></th>
-                                <th></th>
 
-                            </tr>
-                        
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => supplier1.SupplierID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => supplier1.BrandName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => supplier1.PhotoPath)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => supplier1.IsActive)
+                            </th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+
                     </thead>
                     <tbody>
 
@@ -244,11 +242,6 @@
         <!-- Marka Tablosu Sonu -->
     </div>
 </div>
-
-
-
-
-
 <div class="row">
     <div class="col-md-6">
         <!-- Ürün Tablosu -->
