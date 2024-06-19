@@ -7,7 +7,6 @@ using mechatro_ecommerce.Models;
 
 namespace mechatro_ecommerce.Controllers
 {
-
     public class AdminController : Controller
     {
         ICategoryRepository categoryRepository = new CategoryRepository();
@@ -17,9 +16,7 @@ namespace mechatro_ecommerce.Controllers
         ProductRepository p = new ProductRepository();
         StatusRepository st = new StatusRepository();
         SettingRepository setting = new SettingRepository();
-
         MechatroContext context = new MechatroContext();
-
 
         [HttpGet]
 
@@ -27,7 +24,6 @@ namespace mechatro_ecommerce.Controllers
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(string usernameOrEmail, string password)
@@ -46,14 +42,12 @@ namespace mechatro_ecommerce.Controllers
                 return View();
             }
         }
-
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("LoginInfo");
             HttpContext.Session.Remove("Admin");
             return RedirectToAction("Login");
         }
-
         public ActionResult Index()
         {
             MechatroContext context = new MechatroContext();
@@ -71,7 +65,6 @@ namespace mechatro_ecommerce.Controllers
             List<Category> categories = await c.CategorySelect();
             return View(categories);
         }
-
 
         [HttpGet]
         public IActionResult CategoryCreate()
@@ -112,7 +105,6 @@ namespace mechatro_ecommerce.Controllers
             var category = await c.CategoryDetails(id);
             return View(category);
         }
-
         [HttpPost]
         public IActionResult CategoryEdit(Category category)
         {
@@ -137,7 +129,6 @@ namespace mechatro_ecommerce.Controllers
 
             return View(category);
         }
-
         public async Task<IActionResult> CategoryDelete(int? id)
         {
             if (id == null || context.Categories == null)
@@ -169,7 +160,6 @@ namespace mechatro_ecommerce.Controllers
                 return RedirectToAction(nameof(CategoryDelete));
             }
         }
-
         public async Task<IActionResult> SupplierIndex()
         {
             List<Supplier> suppliers = await s.SupplierSelect();
@@ -276,7 +266,6 @@ namespace mechatro_ecommerce.Controllers
                 return RedirectToAction(nameof(SupplierDelete));
             }
         }
-
         public async Task<IActionResult> StatusIndex()
         {
             List<Status> statuses = await st.StatusSelect();

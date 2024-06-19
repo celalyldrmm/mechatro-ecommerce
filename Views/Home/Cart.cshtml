@@ -15,15 +15,13 @@
 <div class="wishlist-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 ">
-                
+            <div class="col-sm-12 col-md-12 col-lg-12 ">                
                 @if (@ViewBag.Sepetim != null)
                 {
                     <div class="cart-wrapper table-responsive">
                         <table class="shop_table cart">
                            <thead>
                                <tr>
-
                                    <th colspan="3" class="product-name">ÜRÜN ADI</th>
                                    <th class="product-price">KDV</th>
                                    <th class="product-price">BİRİM FİYAT</th>
@@ -32,7 +30,6 @@
                                </tr>
                            </thead>
                            <tbody>
-
                                @foreach (var item in ViewBag.Sepetim as IList<OrderRepository>)
                                {
                                    <tr class="cart_item">
@@ -54,7 +51,6 @@
                                        <td class="product-name">
                                            <span class="amount">@item.Quantity</span>
                                        </td>
-
                                        <td class="product-name">
                                            @{
                                                kdvdahil = 0;
@@ -63,12 +59,8 @@
                                            }
                                            <span class="amount">@kdvdahil ₺</span>
                                        </td>
-
                                    </tr>
                                }
-
-
-
                            </tbody>
                        </table>
                     </div>
@@ -86,7 +78,6 @@
                             <div class="total_table">
                                 <table class="table-responsive">
                                     <tbody>
-
                                         @{
                                             kdvdahil = 0;
 
@@ -100,7 +91,6 @@
                                             }
                                             totalkdv = kdvdahil - kdvharic;
                                         }
-
                                         <tr class="cart-subtotal">
                                             <th>TUTAR</th>
                                             <td><span class="amount">@kdvharic ₺</span></td>
@@ -115,7 +105,6 @@
                                             <th>TOPLAM</th>
                                             <td><strong><span class="amount">@kdvdahil ₺</span></strong> </td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                                 <div class="submit_crt">
@@ -126,9 +115,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
@@ -140,12 +126,10 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
                     <h3 class="title">FIRSAT ÜRÜNLERİ</h3>
-
                 </div>
             </div>
             <!-- /section title -->
@@ -189,10 +173,7 @@
                                         </div>
                                     </div>
                                 }
-
                                 <!-- /product -->
-
-
                             </div>
                             <div id="slick-nav-3" class="products-slick-nav"></div>
                         </div>
