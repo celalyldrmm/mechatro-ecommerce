@@ -38,3 +38,8 @@ When the project is started, you will be greeted with a simple e-commerce interf
 ## Contributing
 If you would like to contribute to the project, please create a pull request. You can add new features or fix bugs.
 
+# Project FlowChart & SQL Database Relational Diagram
+
+![mechatroflowchart_sqldiagram](https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/88723b41-3983-43fb-90c7-5ee559800b56)
+
+
