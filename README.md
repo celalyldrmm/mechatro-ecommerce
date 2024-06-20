@@ -42,4 +42,15 @@ If you would like to contribute to the project, please create a pull request. Yo
 
 ![mechatroflowchart_sqldiagram](https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/88723b41-3983-43fb-90c7-5ee559800b56)
 
+# Admin Panel 
+
+
+https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/812a3f53-966c-4852-b329-6ce7eee5c1b5
+
+# Home Panel
+
+
+https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/7da9503b-f81b-4744-9641-8e68df4513de
+
+
 
