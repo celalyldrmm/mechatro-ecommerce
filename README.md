@@ -51,11 +51,11 @@ When the project is started, you will be greeted with a simple e-commerce interf
   - ASP.NET Core
   - Entity Framework Core
   - Model-View-Controller (MVC)
-    
- - **Design Patterns & Components**:
-  - ViewComponent
-  - Interfaces
 
+ - **Design Patterns & Components**:
+    - ViewComponent
+    - Interfaces
+    
 - **Database & Database Techniques**:
   - Microsoft SQL Server
   - Entity Framework Core Migrations
