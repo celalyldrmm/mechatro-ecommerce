@@ -35,9 +35,6 @@ Before running the project, you need to follow the steps below to complete the n
 ## Usage
 When the project is started, you will be greeted with a simple e-commerce interface. Here, you can register on the site, add products to your cart, and make purchases. Access to the admin panel is available from the homepage, where you can log in with "username: admin, password: admin". In the admin panel, you can add, delete, and update categories, brands, products, and statuses, as well as configure the products to be displayed and the fixed seller information in the settings section.
 
-# Project FlowChart & SQL Database Relational Diagram
-![mechatroflowchart_sqldiagram](https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/88723b41-3983-43fb-90c7-5ee559800b56)
-
 ## Technologies & Applications Used
 
 - **Backend-Frontend & Languages**:
@@ -67,11 +64,14 @@ When the project is started, you will be greeted with a simple e-commerce interf
 - **Version Control**:
   - GitHub
 
-## Admin Panel 
-https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/812a3f53-966c-4852-b329-6ce7eee5c1b5
+# Project FlowChart & SQL Database Relational Diagram
+![mechatroflowchart_sqldiagram](https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/88723b41-3983-43fb-90c7-5ee559800b56)
 
 ## Home Page
 https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/7da9503b-f81b-4744-9641-8e68df4513de
+
+## Admin Panel 
+https://github.com/hmtcan/mechatro-ecommerce/assets/100319856/812a3f53-966c-4852-b329-6ce7eee5c1b5
 
 ## Contributing
 If you would like to contribute to the project, please create a pull request. You can add new features or fix bugs.
